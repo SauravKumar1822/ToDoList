@@ -64,6 +64,7 @@
       <textarea class="form-control" id="description" rows="3"></textarea>
     </div>
     <button type="submit" id="add" class="btn btn-primary">Add to List</button>
+    <button type="submit" id="clear" class="btn btn-primary" onclick="clearstorage()">Clear List</button>
 
     <div id="items" class="my-4">
       <h2>Your Items</h2>
@@ -102,7 +103,7 @@
 
   <script>
     function getAndupdate() {
-      console.log('Updating List and Listening');
+      console.log('Updating List....');
       tit = document.getElementById('title').value;
       desc = document.getElementById('description').value;
       if (localStorage.getItem("itemsJson") == null) {
@@ -150,7 +151,7 @@
     update();
 
     function deleting(itemIndex) {
-      console.log("Delete", itemIndex);
+      console.log("Deleting...", itemIndex);
       itemJsonArrayStr = localStorage.getItem('itemsJson');
       itemJsonArray = JSON.parse(itemJsonArrayStr);
 
@@ -160,6 +161,12 @@
       update();
     }
 
+    function clearstorage(){
+      if (confirm("Do you really want to clear?")){
+      localStorage.clear();
+      update();
+      }
+    }
   </script>
 </body>
 
